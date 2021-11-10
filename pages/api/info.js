@@ -6,6 +6,8 @@ export default async function handler(req, res) {
     info = await fetch(`https://api.keyma.sh/api/v2/player/info?name=${req.query.name}`)
       .then(fetchRes => fetchRes.json())
   } catch (e) {
+    console.log(await fetch(`https://api.keyma.sh/api/v2/player/info?name=${req.query.name}`)
+      .then(fetchRes => fetchRes.text()))
     console.log(e)
     throw e
   }
