@@ -43,11 +43,11 @@ const Index = () => {
       .then(res => res.json())
 
     const newDatasets = _.cloneDeep(data.datasets)
-    newDatasets[0].data = matches.data.map(match => match.wpm)
+    newDatasets[0].data = matches.data.map(match => match.wpm).filter(wpm => wpm > 20 && wpm < 250)
 
     setData({
       ...data,
-      labels: (new Array(matches.data.length)).fill(1).map((i, index) => 'Game ' + String(index + 1)),
+      labels: (new Array(newDatasets[0].data.length)).fill(1).map((i, index) => 'Game ' + String(index + 1)),
       datasets: newDatasets
     })
   }, [username, setError, setData, data])
